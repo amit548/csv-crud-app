@@ -24,7 +24,7 @@ The project is a web portal that allows users to perform CRUD operations on a CS
 
 ## Features
 
-List the main features of the web portal. For example:
+List the main features of the web portal:
 
 - Create, Read, Update, and Delete (CRUD) operations on a CSV file.
 - Customizable CSV file content.
