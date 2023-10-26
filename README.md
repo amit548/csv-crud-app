@@ -60,3 +60,15 @@ npm install
 ```
 nx run-many --target=serve
 ```
+
+4. Open the web portal in a browser:
+
+```
+http://localhost:4200
+```
+
+5. Build the project:
+
+```
+nx run-many --target=build
+```
