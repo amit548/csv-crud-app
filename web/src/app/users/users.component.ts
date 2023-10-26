@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { catchError, tap } from 'rxjs';
+import { tap } from 'rxjs';
 
 import User from '../user';
 import { UserService } from '../user.service';
