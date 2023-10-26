@@ -1,0 +1,102 @@
+<div class="grid lg:grid-cols-3 gap-6">
+  <ul>
+    <li class="mb-12">
+      <button
+        (click)="
+          selectedUser = undefined; isCreateUserClicked = !isCreateUserClicked
+        "
+        type="button"
+        class="btn btn-circle btn-neutral w-2/3"
+        [class.btn-active]="isCreateUserClicked"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 4.5v15m7.5-7.5h-15"
+          />
+        </svg>
+        <span class="line-clamp-1">Add New User</span>
+      </button>
+    </li>
+    <li *ngFor="let user of users" class="mb-4">
+      <button
+        type="button"
+        class="btn btn-outline w-2/3"
+        [class.btn-active]="selectedUser === user"
+        (click)="isCreateUserClicked = false; selectedUser = user"
+      >
+        <span class="line-clamp-1">{{ user.name }}</span>
+      </button>
+    </li>
+  </ul>
+  <div class="col-span-2">
+    <form *ngIf="isCreateUserClicked" (submit)="createUser()" class="space-y-5">
+      <div *ngIf="isError" class="text-error max-w-xs">
+        {{ errorMessage }}
+      </div>
+      <div class="form-control">
+        <input
+          type="text"
+          placeholder="Enter your name"
+          name="name"
+          [(ngModel)]="userModel.name"
+          class="input input-bordered w-full max-w-xs"
+        />
+      </div>
+      <div class="form-control w-full max-w-xs">
+        <label class="label">
+          <span class="label-text">What is your age? {{ userModel.age }}</span>
+        </label>
+        <input
+          type="range"
+          min="0"
+          max="100"
+          name="age"
+          value="0"
+          [(ngModel)]="userModel.age"
+          class="range max-w-xs w-full"
+        />
+      </div>
+      <div class="form-control">
+        <input
+          type="email"
+          placeholder="Enter your email"
+          name="email"
+          [(ngModel)]="userModel.email"
+          class="input input-bordered w-full max-w-xs"
+        />
+      </div>
+      <div class="form-control">
+        <input
+          type="tel"
+          placeholder="Enter your phone number"
+          name="phone"
+          [(ngModel)]="userModel.phone"
+          class="input input-bordered w-full max-w-xs"
+        />
+      </div>
+      <div class="form-control">
+        <textarea
+          placeholder="Enter your address"
+          name="address"
+          [(ngModel)]="userModel.address"
+          class="textarea textarea-bordered w-full max-w-xs"
+        ></textarea>
+      </div>
+      <button type="submit" class="btn">Update</button>
+    </form>
+    <app-user-detail
+      [user]="selectedUser"
+      (updateUser)="updateUser($event)"
+      (deleteUser)="deleteUser($event)"
+    ></app-user-detail>
+  </div>
+</div>
